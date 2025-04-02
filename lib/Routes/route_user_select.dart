@@ -69,6 +69,8 @@ class RouteUserSelect extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Selected user: $name')),
         );
+
+        Navigator.pushNamed(context, '/assess');
       },
       child: Card(
         color: color, // Add background color

@@ -33,7 +33,6 @@ class _UploadPdfScreenState extends State<RouteDataInput> {
         fileName = result.files.single.name; // save file as file name
       });
 
-      Navigator.pushNamed(context, 'present_flashcards');
     }
   }
 
@@ -62,7 +61,14 @@ class _UploadPdfScreenState extends State<RouteDataInput> {
             if (fileName != null) ...[
               const SizedBox(height: 20),
               Text("Selected File: $fileName", style: const TextStyle(fontSize: 16)),
+              SizedBox(height: 15.0,),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/present_flashcards');
+                }
+              , child: Text("Send Material"))
             ],
+
           ],
         ),
       ),
