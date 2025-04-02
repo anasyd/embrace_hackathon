@@ -1,7 +1,36 @@
+import 'package:embrace_hackathon/User-Data/user_handler.dart';
+import 'package:embrace_hackathon/Widget/add_user_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class RouteUserSelect extends StatelessWidget {
+class RouteUserSelect extends StatefulWidget {
   const RouteUserSelect({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _RouteUserSelectState();
+}
+
+class _RouteUserSelectState extends State<RouteUserSelect>
+{
+
+  bool _isLoading = false;
+  List<User> userList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loadData(); 
+  }
+
+  void _loadData() async
+  {
+    setState(() => _isLoading = true);
+
+    userList = await UserHandler.instance.getUserList();
+
+    setState(() => _isLoading = false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +58,34 @@ class RouteUserSelect extends StatelessWidget {
                       ),
                     ),
 
+                    SizedBox
+                    (
+                      width: 500, // Limit the width of the GridView
+                      child: GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3, // Keep 3 cards in a row
+                          crossAxisSpacing: 8, // Reduce spacing
+                          mainAxisSpacing: 8, // Reduce spacing
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(), // Disable scrolling
+                        itemCount: userList.length + 1, // Extra item for the add button
+                        itemBuilder: (context, index) {
+                          if (index < userList.length) {
+                            return _userCard(
+                              name: userList[index].userName, 
+                              color: Colors.amber, 
+                              context: context
+                            );
+                          } else {
+                            return _addUserCard(context); // Last item is the add button
+                          }
+                        },
+                      ),
+                    )
+
+                    /*
                     // USER PROFILE CARDS
                     SizedBox(
                       width: 500, // Limit the width of the GridView
@@ -45,7 +102,7 @@ class RouteUserSelect extends StatelessWidget {
                           _addUserCard(context),
                         ],
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -99,9 +156,13 @@ class RouteUserSelect extends StatelessWidget {
   Widget _addUserCard(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Add new user")),
-        );
+        showDialog(context: context, builder: (BuildContext context) 
+        {
+          return AddUserDialog
+          (
+            updateCall: _loadData
+          );
+        });
       },
       child: Card(
         color: Colors.white,

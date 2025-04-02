@@ -21,6 +21,9 @@ class UserHandler
   // Singleton.
   static UserHandler instance = UserHandler._();
 
+  // User.
+  User? currentUser = null;
+
   // Database.
   late Database _sqlDB;
 
