@@ -33,4 +33,3 @@ flutter:
 
   assets:
     - .env
-    - lib/test.png

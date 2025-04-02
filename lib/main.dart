@@ -6,6 +6,7 @@
 import 'dart:io';
 
 // Backend.
+import 'package:embrace_hackathon/Routes/route_flashcards_trial.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:embrace_hackathon/User-Data/user_handler.dart';
@@ -17,7 +18,7 @@ import 'Routes/route_data_input.dart';
 import 'Routes/route_present_flashcards.dart';
 import 'Routes/route_user_select.dart';
 // import 'Routes/route_upload_flashcards.dart';
-import 'Routes/route_test_flashcards.dart'; // new import
+
 
 // ########################
 // Main.
@@ -78,15 +79,12 @@ class _DesktopAppState extends State<DesktopApp> {
       routes: {
         "/assess": (context) => RouteAssessment(),
         "/dataInput": (context) => RouteDataInput(),
-        "/present_flashcards": (context) => RoutePresentFlashcards(),
+        "/present_flashcards": (context) => FlashcardPage(),
         "/userselect": (context) => RouteUserSelect(),
-        // "/upload_flashcards": (context) => const RouteUploadFlashcards(),
-        "/test_flashcards":
-            (context) => const RouteTestFlashcards(), // new route
       },
 
       // Set the intial route.
-      initialRoute: "/test_flashcards", // set test screen as initial route
+      initialRoute: "/userselect", // set test screen as initial route
     );
   }
 }
