@@ -19,9 +19,15 @@ import 'Routes/route_user_select.dart';
 
 Future<void> main() async 
 {
+  // Ensure flutter is fully initialised.
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Setup GPT API.
   await dotenv.load(fileName: ".env");
   OpenAI.apiKey = dotenv.env['apiKey'] ?? '';
   OpenAI.baseUrl = dotenv.env['endpoint'] ?? '';
+
+  // Start the app.
   runApp(const DesktopApp());
 }
 
