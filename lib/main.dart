@@ -1,6 +1,10 @@
+import 'package:embrace_hackathon/env.env.dart';
 import 'package:flutter/material.dart';
+import 'package:dart_openai/dart_openai.dart';
 
 void main() {
+  OpenAI.apiKey = Env.apiKey;
+  OpenAI.baseUrl = ;
   runApp(const MyApp());
 }
 
