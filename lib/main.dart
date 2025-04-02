@@ -79,7 +79,7 @@ class _DesktopAppState extends State<DesktopApp>
       },
 
       // Set the intial route.
-      initialRoute: "/present_flashcards",
+      initialRoute: "/userselect",
     );
   }
 }

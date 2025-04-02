@@ -32,6 +32,8 @@ class _UploadPdfScreenState extends State<RouteDataInput> {
       setState(() {
         fileName = result.files.single.name; // save file as file name
       });
+
+      Navigator.pushNamed(context, 'present_flashcards');
     }
   }
 
