@@ -2,9 +2,14 @@
 // Imports.
 // ########################
 
+// Base.
+import 'dart:io';
+
 // Backend.
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:embrace_hackathon/User-Data/user_handler.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 // Routes.
 import 'Routes/route_assessment.dart';
@@ -18,9 +23,21 @@ import 'Routes/route_test_flashcards.dart'; // new import
 // Main.
 // ########################
 
-void main() async {
+
+void main() async 
+{
   // Ensure flutter is fully initialised.
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Windows/Linux compatibility.
+  if (Platform.isWindows || Platform.isLinux)
+  {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+
+  // Initialise UserHandler.
+  await UserHandler.instance.initialise();
 
   // Setup GPT API.
   await dotenv.load(fileName: ".env");
