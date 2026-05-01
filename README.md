@@ -2,7 +2,7 @@
 
 **Hackathon project — AI for Neurodiverse Learners**
 
-Embrace is a Flutter desktop application that generates personalised study flashcards from images using Azure OpenAI's vision model. Users select an image of their study material, the AI reads it and produces multiple-choice questions, and the app presents them as an interactive quiz with instant feedback.
+Embrace is a Flutter desktop and mobile application that generates personalised study flashcards from images using Azure OpenAI's vision model. Users select an image of their study material, the AI reads it and produces multiple-choice questions, and the app presents them as an interactive quiz with instant feedback.
 
 ## Screenshots
 
@@ -16,7 +16,7 @@ Embrace is a Flutter desktop application that generates personalised study flash
 - **Interactive quiz** — four-option multiple choice; selected answer highlighted; submit reveals correct/incorrect; auto-advances to next card
 - **Multi-user profiles** — local SQLite database; users have a name and a stored learning level; profile persists between sessions
 - **Learning style assessment** — three-question onboarding captures preferred learning method, memory style, and content type
-- **Cross-platform** — Windows, Linux, macOS (FFI SQLite initialisation per platform)
+- **Cross-platform** — Windows, Linux, macOS, iOS, Android (FFI SQLite initialisation per platform)
 - **Segmented view tabs** — Flash Cards, Audio, and List tabs scaffolded (Audio/List placeholders)
 
 ## Tech Stack
